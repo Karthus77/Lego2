@@ -61,6 +61,7 @@ public class UserFragment extends Fragment {
 
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.putBoolean("islogin",false);
+                editor.commit();
                 getActivity().finish();
                 Intent intent=new Intent(getActivity(),login.class);
                 startActivity(intent);
