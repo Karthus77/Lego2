@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/lego"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp">
+        </ImageView>
+        <EditText
+            android:id="@+id/account"
+            android:layout_width="300sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:hint=" 用户名"
+            android:background="@drawable/translucent">
+
+        </EditText>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/account"
+            android:hint=" 密码"
+            android:inputType="textPassword"
+            android:background="@drawable/translucent">
+
+        </EditText>
+        <Button
+            android:id="@+id/login"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/stylelogin"
+            android:text="登    陆"
+            android:textSize="20dp">
+
+        </Button>
+        <TextView
+            android:id="@+id/zhuce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即注册"
+            android:layout_below="@id/login"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70sp"
+            android:layout_marginTop="10sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp">
+            
+        </TextView>
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

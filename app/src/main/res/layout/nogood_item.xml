@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/myStore"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/empty_store"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myStore"
+            android:layout_centerHorizontal="true"
+            android:text="还没有商品哦!"
+            android:layout_marginTop="20dp">
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myStore"
+            android:layout_marginTop="45dp"
+            android:layout_centerHorizontal="true"
+            android:text="赶紧上架商品吧!">
+
+        </TextView>
+        <ImageView
+            android:id="@+id/indicate"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/indicate"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击上方按钮上架商品"
+            android:layout_below="@id/indicate"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp">
+
+        </TextView>
+
+    </RelativeLayout>
+
+</LinearLayout>

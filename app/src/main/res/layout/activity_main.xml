@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_above="@id/linear">
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:orientation="horizontal"
+       android:layout_alignParentBottom="true">
+
+       <RelativeLayout
+           android:id="@+id/center_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+          android:layout_weight="1">
+
+          <ImageView
+              android:id="@+id/center"
+              android:layout_width="50sp"
+              android:layout_height="50sp"
+               android:layout_centerHorizontal="true"
+              android:src="@drawable/imagestyle_1">
+
+          </ImageView>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+             android:textSize="10sp"
+             android:text="商城"
+             android:layout_below="@id/center"
+             android:layout_centerHorizontal="true"
+              android:textColor="@color/text_color"
+             android:textStyle="bold"></TextView>
+
+
+
+       </RelativeLayout>
+       <RelativeLayout
+           android:id="@+id/store_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="1">
+          <ImageView
+              android:id="@+id/store"
+              android:layout_width="40sp"
+              android:layout_height="40sp"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="5sp"
+              android:src="@drawable/imagestyle_2">
+
+          </ImageView>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="10sp"
+              android:layout_marginTop="5dp"
+              android:text="我的店铺"
+              android:textColor="@color/text_color"
+              android:layout_below="@id/store"
+              android:layout_centerHorizontal="true"
+              android:textStyle="bold"></TextView>
+
+       </RelativeLayout>
+       <RelativeLayout
+           android:id="@+id/car_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="1">
+          <ImageView
+              android:id="@+id/car"
+              android:layout_width="40sp"
+              android:layout_height="50sp"
+              android:layout_centerHorizontal="true"
+              android:src="@drawable/imagestyle_4">
+
+          </ImageView>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="10sp"
+              android:text="购物车"
+              android:layout_below="@id/car"
+              android:textColor="@color/text_color"
+              android:layout_centerHorizontal="true"
+              android:textStyle="bold"></TextView>
+
+       </RelativeLayout>
+       <RelativeLayout
+           android:id="@+id/user_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="1">
+          <ImageView
+              android:id="@+id/user"
+              android:layout_width="40sp"
+              android:layout_height="50sp"
+              android:layout_centerHorizontal="true"
+              android:src="@drawable/imagestyle_3">
+
+          </ImageView>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="10sp"
+              android:text="我"
+              android:layout_below="@id/user"
+              android:textColor="@color/text_color"
+              android:layout_centerHorizontal="true"
+              android:textStyle="bold"></TextView>
+
+       </RelativeLayout>
+    </LinearLayout>
+ </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

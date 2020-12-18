@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".register">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow">
+        <RelativeLayout
+            android:id="@+id/register_top"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+            <ImageView
+                android:id="@+id/backToLogin"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/back"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp">
+
+            </ImageView>
+
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/smile"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/smile"
+            android:layout_below="@id/register_top"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp">
+
+        </ImageView>
+        <EditText
+        android:id="@+id/account_register"
+        android:layout_width="300sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/smile"
+        android:hint=" 用户名(8-20位)"
+        android:background="@drawable/translucent">
+
+    </EditText>
+        <EditText
+            android:id="@+id/password_register"
+            android:layout_width="300sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_below="@id/account_register"
+            android:hint=" 密码(8-20位)"
+            android:background="@drawable/translucent">
+
+        </EditText>
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/stylelogin"
+            android:text="注    册"
+            android:textSize="20dp">
+
+        </Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sign_up"
+            android:text="Welcome to join us !"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
