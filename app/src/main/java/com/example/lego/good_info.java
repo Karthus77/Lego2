@@ -36,6 +36,7 @@ public class good_info extends AppCompatActivity {
     TextView name;
     TextView info;
     TextView price;
+    TextView restNumber;
     RelativeLayout buy;
     TextView number;
     private int num=1;
@@ -50,6 +51,7 @@ public class good_info extends AppCompatActivity {
         subtract=findViewById(R.id.info_subtract);
         buy=findViewById(R.id.buy);
         number=findViewById(R.id.buy_number);
+        restNumber=findViewById(R.id.number);
         img=findViewById(R.id.info_image);
         name=findViewById(R.id.info_name);
         info=findViewById(R.id.info_info);
@@ -99,12 +101,21 @@ public class good_info extends AppCompatActivity {
                                 });
 
                             }
-                            else
+                            else if(code==422)
                             {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         Toast.makeText(good_info.this,"不能购买自己的商品",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(good_info.this,"商品存货不够了",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -167,6 +178,8 @@ public class good_info extends AppCompatActivity {
                             length =good_price.length();
                             String good_info =goodBean.getInfo();
                             String good_url =goodBean.getImg();
+                            int good_number=goodBean.getQuantity();
+                            restNumber.setText("剩余数量:"+good_number);
                             name.setText(good_name);
                             price.setText(good_price);
                             info.setText(good_info);

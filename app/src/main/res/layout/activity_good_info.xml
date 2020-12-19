@@ -68,6 +68,16 @@
             android:layout_centerHorizontal="true">
 
         </TextView>
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_price"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="剩余数量">
+
+        </TextView>
         <LinearLayout
             android:background="@color/yellow"
             android:layout_width="match_parent"

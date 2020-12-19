@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,9 @@ public class CenterFragment extends Fragment {
      List<Map<String, Object>> list=new ArrayList<>();
      RecyclerView recyclerView;
      RefreshLayout refreshLayout;
+     GoodAdapter goodAdapter;
+     int i;
+     int count;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +73,7 @@ public class CenterFragment extends Fragment {
                         @Override
                         public void run() {
 
-                            for(int i=0;i<goodsBeanList.size();i++)
+                            for( i=0;i<40;i++)
                             {
                                 Map<String,Object> map=new HashMap<>();
                                 com.example.lego.good.DataBean.GoodsBean goodsBean =goodsBeanList.get(i);
@@ -83,7 +87,8 @@ public class CenterFragment extends Fragment {
                                 map.put("image",url);
                                 list.add(map);
                             }
-                            GoodAdapter goodAdapter =new GoodAdapter(CenterFragment.this,list);
+                            count=goodsBeanList.size();
+                            goodAdapter =new GoodAdapter(CenterFragment.this,list);
                             recyclerView.setAdapter(goodAdapter);
                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
@@ -147,7 +152,7 @@ public class CenterFragment extends Fragment {
                                         map.put("image",url);
                                         list.add(map);
                                     }
-                                    GoodAdapter goodAdapter =new GoodAdapter(CenterFragment.this,list);
+                                     goodAdapter =new GoodAdapter(CenterFragment.this,list);
                                     recyclerView.setAdapter(goodAdapter);
                                     recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
@@ -184,21 +189,74 @@ public class CenterFragment extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            final OkHttpClient okHttpClient = new OkHttpClient();
-                            Gson gson = new Gson();
-                            Request request = new Request.Builder()
-                                    .url("http://49.232.214.94/api/goods")
-                                    .build();
-                            Response response = okHttpClient.newCall(request).execute();
-                            String responseData = response.body().string();
-                            final good good =gson.fromJson(responseData, com.example.lego.good.class);
-                            final com.example.lego.good.DataBean dataBean =good.getData();
-                            getActivity().runOnUiThread(new Runnable() {
+                            Thread thread =new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
+                                    try {
+                                        if((i==count))
+                                        {
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                        final OkHttpClient okHttpClient = new OkHttpClient();
+                                        Gson gson = new Gson();
+                                        Request request = new Request.Builder()
+                                                .url("http://49.232.214.94/api/goods")
+                                                .build();
+                                        Response response = okHttpClient.newCall(request).execute();
+                                        String responseData = response.body().string();
+                                        final good good =gson.fromJson(responseData, com.example.lego.good.class);
+                                        final com.example.lego.good.DataBean dataBean =good.getData();
+                                        final List<com.example.lego.good.DataBean.GoodsBean> goodsBeanList = dataBean.getGoods();
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                for( ;i<goodsBeanList.size();i++)
+                                                {
+                                                    Map<String,Object> map=new HashMap<>();
+                                                    com.example.lego.good.DataBean.GoodsBean goodsBean =goodsBeanList.get(i);
+                                                    String name=goodsBean.getName();
+                                                    int id =goodsBean.getGood_id();
+                                                    String url=goodsBean.getImg();
+                                                    String price=goodsBean.getPrice();
+                                                    map.put("id",id);
+                                                    map.put("name",name);
+                                                    map.put("price",price);
+                                                    map.put("image",url);
+                                                    list.add(map);
+                                                }
+                                                Log.v("nn", String.valueOf(i));
+                                                Log.v("nn",String.valueOf(count));
+                                                goodAdapter.notifyDataSetChanged();
+
+
+                                            }
+                                        });
+
+                                    } catch (IOException e) {
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                list.clear();
+                                                Map<String,Object> map=new HashMap<>();
+                                                map.put("1",1);
+                                                list.add(map);
+                                                GoodAdapter goodAdapter = new GoodAdapter(CenterFragment.this,list);
+                                                recyclerView.setAdapter(goodAdapter);
+                                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                            }
+                                        });
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
+                            thread.start();
+
 
                         } catch (Exception e) {
                             getActivity().runOnUiThread(new Runnable() {

@@ -262,18 +262,18 @@ public class CarFragment extends Fragment {
                     });
                 } catch (Exception e) {
                     getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            list.clear();
-                            Map<String,Object> map=new HashMap<>();
-                            map.put("1",1);
-                            map.put("2",2);
-                            map.put("3",3);
-                            list.add(map);
-                            carAdapter carAdapter=new carAdapter(CarFragment.this,list);
-                            recyclerView.setAdapter(carAdapter);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        }
+                            @Override
+                            public void run() {
+                                list.clear();
+                                Map<String,Object> map=new HashMap<>();
+                                map.put("1",1);
+                                map.put("2",2);
+                                map.put("3",3);
+                                list.add(map);
+                                carAdapter carAdapter=new carAdapter(CarFragment.this,list);
+                                recyclerView.setAdapter(carAdapter);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                            }
                     });
                     e.printStackTrace();
                 }
