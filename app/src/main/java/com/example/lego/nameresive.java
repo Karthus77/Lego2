@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +44,16 @@ public class nameresive extends AppCompatActivity {
         final SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         String id=sharedPreferences.getString("name",null);
         name.setText(id);
+        name.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                    return "";
+                } else {
+                    return null;
+                }
+            }
+        }});
         preserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

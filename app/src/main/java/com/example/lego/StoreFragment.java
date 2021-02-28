@@ -69,6 +69,7 @@ public class StoreFragment extends Fragment {
                     @Override
                     public void run() {
                         try{
+                            Thread.sleep(100);
                             OkHttpClient okHttpClient = new OkHttpClient();
                             Gson gson = new Gson();
                             String token =sharedPreferences.getString("token",String.valueOf(123));

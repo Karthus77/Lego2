@@ -44,6 +44,7 @@ public class CenterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_center, container, false);
 
@@ -54,10 +55,11 @@ public class CenterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         recyclerView=getActivity().findViewById(R.id.recyclerView);
         refreshLayout=getActivity().findViewById(R.id.refreshLayout);
-        Thread thread =new Thread(new Runnable() {
+        final Thread thread =new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
+                    Thread.sleep(100);
                     final OkHttpClient okHttpClient = new OkHttpClient();
                     Gson gson = new Gson();
                     Request request = new Request.Builder()
@@ -96,7 +98,7 @@ public class CenterFragment extends Fragment {
                         }
                     });
 
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

@@ -44,6 +44,7 @@
             android:layout_width="230dp"
             android:layout_height="60dp"
             android:layout_marginTop="150dp"
+            android:maxLength="20"
             android:layout_marginLeft="15sp">
 
         </EditText>

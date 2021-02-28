@@ -21,6 +21,7 @@
         <EditText
             android:id="@+id/account"
             android:layout_width="300sp"
+            android:maxLength="20"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/account"
             android:hint=" 密码"
+            android:maxLength="20"
             android:inputType="textPassword"
             android:background="@drawable/translucent">
 

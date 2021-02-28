@@ -41,6 +41,10 @@ public class good_info extends AppCompatActivity {
     TextView number;
     private int num=1;
     private int length;
+    int good_number;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +101,7 @@ public class good_info extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         Toast.makeText(good_info.this,"已加入购物车",Toast.LENGTH_SHORT).show();
+                                        restNumber.setText(Integer.valueOf(good_number-num).toString());
                                     }
                                 });
 
@@ -178,7 +183,7 @@ public class good_info extends AppCompatActivity {
                             length =good_price.length();
                             String good_info =goodBean.getInfo();
                             String good_url =goodBean.getImg();
-                            int good_number=goodBean.getQuantity();
+                            good_number=goodBean.getQuantity();
                             restNumber.setText("剩余数量:"+good_number);
                             name.setText(good_name);
                             price.setText(good_price);

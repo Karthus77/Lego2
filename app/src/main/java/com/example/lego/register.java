@@ -33,6 +33,7 @@ class user_register{
 public class register extends AppCompatActivity {
     EditText register_account;
     EditText register_password;
+    EditText register_confirm;
     ImageView back;
     Button sign_up;
     String msg;
@@ -48,8 +49,10 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         register_account=findViewById(R.id.account_register);
         register_password=findViewById(R.id.password_register);
+        register_confirm=findViewById(R.id.password_confirm);
         sign_up=findViewById(R.id.sign_up);
         back=findViewById(R.id.backToLogin);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,42 +64,50 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 final String account=register_account.getText().toString();
                 final String password=register_password.getText().toString();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        OkHttpClient client = new OkHttpClient();
-                        Gson gson = new Gson();
-                        user_register use = new user_register();
-                        use.account=account;
-                        use.password=password;
-                        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                        RequestBody requestBody =RequestBody.create(JSON,gson.toJson(use));
-                        Request request = new Request.Builder()
-                                .url("http://49.232.214.94/api/register")
-                                .post(requestBody)
-                                .build();
-                        Response response = null;
-                        try {
-                            response = client.newCall(request).execute();
-                            String responseData = response.body().string();
-                            user user =gson.fromJson(responseData, com.example.lego.user.class);
-                            msg=user.getMsg();
-                            int code=user.getCode();
-                            if(code==200)
-                            {
-                                finish();
-                                Intent intent=new Intent(register.this,login.class);
-                                startActivity(intent);
+                final String confirm=register_confirm.getText().toString();
+                if(confirm.equals(password)) {
 
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            OkHttpClient client = new OkHttpClient();
+                            Gson gson = new Gson();
+                            user_register use = new user_register();
+                            use.account = account;
+                            use.password = password;
+                            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                            RequestBody requestBody = RequestBody.create(JSON, gson.toJson(use));
+                            Request request = new Request.Builder()
+                                    .url("http://49.232.214.94/api/register")
+                                    .post(requestBody)
+                                    .build();
+                            Response response = null;
+                            try {
+                                response = client.newCall(request).execute();
+                                String responseData = response.body().string();
+                                user user = gson.fromJson(responseData, com.example.lego.user.class);
+                                msg = user.getMsg();
+                                int code = user.getCode();
+                                if (code == 200) {
+                                    finish();
+                                    Intent intent = new Intent(register.this, login.class);
+                                    startActivity(intent);
+
+                                }
+                                Looper.prepare();
+                                Toast.makeText(register.this, msg, Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                            Looper.prepare();
-                            Toast.makeText(register.this,msg,Toast.LENGTH_SHORT).show();
-                            Looper.loop();
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
-                    }
-                }).start();
+                    }).start();
+                }
+                else
+                {
+                    Toast.makeText(register.this,"两次输入的密码不一致",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }}

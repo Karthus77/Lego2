@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +55,26 @@ public class login extends AppCompatActivity {
         login_login=findViewById(R.id.login);
 
         zhuce=findViewById(R.id.zhuce);
+        login_account.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                    return "";
+                } else {
+                    return null;
+                }
+            }
+        }});
+        login_password.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(" ") || source.toString().contentEquals("\n")) {
+                    return "";
+                } else {
+                    return null;
+                }
+            }
+        }});
         zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
